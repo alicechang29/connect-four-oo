@@ -25,6 +25,7 @@ class Game {
     this.width = width;
     this.board = Array(this.height);
     this.currPlayer = 1; //TODO: questioning if this should be in the constructor params
+    this.makeBoard(); //how to call the method within the class upon intialization
   }
 
   switchCurrPlayer() {
@@ -46,6 +47,7 @@ class Game {
     // alternatively:
     // gameState.board = [...gameState.board].map(() => Array(WIDTH).fill(null));
   }
+
 
   findSpotInCol(x) {
     for (let y = this.height - 1; y >= 0; y--) {
@@ -90,7 +92,6 @@ class Game {
     }
     return false;
   }
-
 }
 
 let newGame = new Game();

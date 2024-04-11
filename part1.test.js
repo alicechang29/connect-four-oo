@@ -18,7 +18,7 @@ describe('switchCurrPlayer', function () {
 
 describe('makeBoard', function () {
   beforeEach(function () {
-    testGame = new Game(6, 7);
+    testGame = new Game(6, 7); //height, width
   });
 
   it('makes the in-memory board', function () {

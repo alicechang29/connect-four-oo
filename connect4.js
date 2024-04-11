@@ -66,15 +66,15 @@ class Game {
       return cells.every(
         ([y, x]) =>
           y >= 0 &&
-          y < HEIGHT &&
+          y < this.height &&
           x >= 0 &&
-          x < WIDTH &&
-          gameState.board[y][x] === gameState.currPlayer
+          x < this.width &&
+          this.board[y][x] === this.currPlayer
       );
     }
 
-    for (let y = 0; y < HEIGHT; y++) {
-      for (let x = 0; x < WIDTH; x++) {
+    for (let y = 0; y < this.height; y++) {
+      for (let x = 0; x < this.width; x++) {
         // get "checklist" of 4 cells (starting here) for each of the different
         // ways to win
         const horiz = [[y, x], [y, x + 1], [y, x + 2], [y, x + 3]];
@@ -179,12 +179,6 @@ console.log("first call", newGame.findSpotInCol(5));
 // }
 
 
-// export {
-//   WIDTH,
-//   HEIGHT,
-//   gameState,
-//   makeBoard,
-//   findSpotInCol,
-//   checkForWin,
-//   switchCurrPlayer,
-// };
+export {
+  Game
+};

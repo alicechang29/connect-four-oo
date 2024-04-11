@@ -4,6 +4,8 @@ import {
 
 let game;
 
+
+
 /** makeHtmlBoard: make HTML table and row of column tops. */
 
 function makeHtmlBoard() {
@@ -14,7 +16,7 @@ function makeHtmlBoard() {
   $top.setAttribute("id", "column-top");
 
   // fill top row with clickable cells
-  for (let x = 0; x < WIDTH; x++) {
+  for (let x = 0; x < game.width; x++) {
     const $headCell = document.createElement("td");
     $headCell.setAttribute("id", `top-${x}`);
     $headCell.addEventListener("click", handleClick);
@@ -44,7 +46,7 @@ function makeHtmlBoard() {
 function placeInTable(y, x) {
   const $piece = document.createElement('div');
   $piece.classList.add('piece');
-  $piece.classList.add(`p${gameState.currPlayer}`);
+  $piece.classList.add(`p${game.currPlayer}`);
 
   const $spot = document.querySelector(`#c-${y}-${x}`);
   $spot.append($piece);
@@ -61,12 +63,12 @@ function endGame(msg) {
 /** handleClick: handle click of column top to play piece */
 
 function handleClick(evt) {
-  const { board, currPlayer } = gameState;
+  const { board, currPlayer } = game; //TODO: ???? not sure
   // get x from ID of clicked cell
   const x = Number(evt.target.id.slice("top-".length));
 
   // get next spot in column (if none, ignore click)
-  const y = findSpotInCol(x);
+  const y = game.findSpotInCol(x); //TODO: we know we need to go inside game object to get this method
   if (y === null) {
     return;
   }
@@ -76,7 +78,7 @@ function handleClick(evt) {
   placeInTable(y, x);
 
   // check for win
-  if (checkForWin()) {
+  if (game.checkForWin()) {
     return endGame(`Player ${currPlayer} won!`);
   }
 
@@ -85,7 +87,7 @@ function handleClick(evt) {
     return endGame('Tie!');
   }
 
-  switchCurrPlayer();
+  game.switchCurrPlayer();
 }
 
 
@@ -93,11 +95,8 @@ function handleClick(evt) {
 
 function start() {
   game = new Game();
-
-
   makeHtmlBoard();
 }
 
-console.log(game);
 
 export { start };

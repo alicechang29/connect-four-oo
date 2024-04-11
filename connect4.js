@@ -5,44 +5,26 @@
  * board fills (tie).
  */
 
-//const WIDTH = 7;
-//const HEIGHT = 6;
-
-// let gameState = {
-//   currPlayer: 1, // active player: 1 or 2
-//   board: Array(this.height), // array of HEIGHT number of slots
-//   // Each array slot is empty to start, but will be filled in with an array
-//   // of WIDTH later.
-//   // These inner arrays will represent rows.
-//   // gameState.board[HEIGHT][0] represents the bottom-left spot on the board
-// };
-
-
-
 class Game {
-  constructor(height = 6, width = 7) { //TODO: double check to see if this is the right way
+  constructor(height = 6, width = 7) {
     this.height = height;
     this.width = width;
     this.board = Array(this.height);
-    this.currPlayer = 1; //TODO: questioning if this should be in the constructor params
-    this.makeBoard(); //how to call the method within the class upon intialization
+    this.currPlayer = 1;
+    this.makeBoard();
   }
 
   switchCurrPlayer() {
     this.currPlayer = this.currPlayer === 1 ? 2 : 1;
+
+    console.log("switching player", this.currPlayer);
   }
 
   makeBoard() {
-    // const newBoard = this.board.map((row) => {
-    //   console.log("inside map");
-    //   Array(WIDTH).fill(null);
-    // });
-
     for (let y = 0; y < this.height; y++) {
       const emptyRow = Array(this.width).fill(null);
       this.board[y] = emptyRow;
     }
-    console.log("end map with board", this.board);
 
     // alternatively:
     // gameState.board = [...gameState.board].map(() => Array(WIDTH).fill(null));
@@ -59,7 +41,7 @@ class Game {
   }
   checkForWin() {
 
-    function _win(cells) { // no context, don't know what this is
+    function _win(cells) { // no context, don't know what "this" is
       // Check four cells to see if they're all color of current player
       //  - cells: list of four (y, x) cells
       //  - returns true if all are legal coordinates & all match currPlayer
@@ -104,89 +86,16 @@ class Game {
   }
 }
 
-let newGame = new Game();
-newGame.makeBoard();
-newGame.board[0][5] = 1;
+/*
+WIP - for the future step
 
-console.log("first call", newGame.findSpotInCol(5));
-// newGame.switchCurrPlayer();
-// console.log("second call", newGame.currPlayer);
-
-/** switchCurrPlayer:
- *   checks the value of currPlayer and swaps the value to the other
- *   player instance
- */
-
-// function switchCurrPlayer() {
-//   gameState.currPlayer = gameState.currPlayer === 1 ? 2 : 1;
-// }
-
-
-/** makeBoard: fill in global `board`:
- *    board = array of rows, each row is array of cells  (board[y][x])
+class Player {
+  constructor(p1Color, p2Color) {
+    this.p1Color = p1Color;
+    this.p2Color = p2Color;
+  }
+}
 */
-
-// function makeBoard() {
-//   for (let y = 0; y < HEIGHT; y++) {
-//     const emptyRow = Array(WIDTH).fill(null);
-//     gameState.board[y] = emptyRow;
-//   }
-
-//   // alternatively:
-//   // gameState.board = [...gameState.board].map(() => Array(WIDTH).fill(null));
-// }
-
-
-/** findSpotInCol: given column x, return y coordinate of furthest-down spot
- *    (return null if filled)
- */
-
-// function findSpotInCol(x) {
-//   for (let y = HEIGHT - 1; y >= 0; y--) {
-//     if (gameState.board[y][x] === null) {
-//       return y;
-//     }
-//   }
-//   return null;
-// }
-
-
-/** checkForWin: check board cell-by-cell for "does a win start here?" */
-
-// function checkForWin() {
-
-//   function _win(cells) {
-//     // Check four cells to see if they're all color of current player
-//     //  - cells: list of four (y, x) cells
-//     //  - returns true if all are legal coordinates & all match currPlayer
-
-//     return cells.every(
-//       ([y, x]) =>
-//         y >= 0 &&
-//         y < HEIGHT &&
-//         x >= 0 &&
-//         x < WIDTH &&
-//         gameState.board[y][x] === gameState.currPlayer
-//     );
-//   }
-
-//   for (let y = 0; y < HEIGHT; y++) {
-//     for (let x = 0; x < WIDTH; x++) {
-//       // get "checklist" of 4 cells (starting here) for each of the different
-//       // ways to win
-//       const horiz = [[y, x], [y, x + 1], [y, x + 2], [y, x + 3]];
-//       const vert = [[y, x], [y + 1, x], [y + 2, x], [y + 3, x]];
-//       const diagDR = [[y, x], [y + 1, x + 1], [y + 2, x + 2], [y + 3, x + 3]];
-//       const diagDL = [[y, x], [y + 1, x - 1], [y + 2, x - 2], [y + 3, x - 3]];
-
-//       // find winner (only checking each win-possibility as needed)
-//       if (_win(horiz) || _win(vert) || _win(diagDR) || _win(diagDL)) {
-//         return true;
-//       }
-//     }
-//   }
-//   return false;
-// }
 
 
 export {

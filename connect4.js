@@ -5,18 +5,35 @@
  * board fills (tie).
  */
 
-const WIDTH = 7;
-const HEIGHT = 6;
+//const WIDTH = 7;
+//const HEIGHT = 6;
 
-const gameState = {
+gameState = {
   currPlayer: 1, // active player: 1 or 2
-  board: Array(HEIGHT), // array of HEIGHT number of slots
+  board: Array(this.height), // array of HEIGHT number of slots
   // Each array slot is empty to start, but will be filled in with an array
   // of WIDTH later.
   // These inner arrays will represent rows.
   // gameState.board[HEIGHT][0] represents the bottom-left spot on the board
 };
 
+
+
+class Game {
+  constructor(height = 6, width = 7) { //TODO: double check to see if this is the right way
+    this.height = height;
+    this.width = width;
+    this.board = Array(this.height);
+    this.currPlayer = 1; //TODO: questioning if this should be in the constructor params
+  }
+
+
+  switchCurrPlayer() {
+    gameState.currPlayer = gameState.currPlayer === 1 ? 2 : 1;
+  }
+
+
+}
 
 /** switchCurrPlayer:
  *   checks the value of currPlayer and swaps the value to the other

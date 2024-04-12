@@ -3,7 +3,7 @@ import {
 } from "./connect4.js";
 
 let game;
-
+const startBtn = document.querySelector("#start-btn");
 
 
 /** makeHtmlBoard: make HTML table and row of column tops. */
@@ -90,12 +90,17 @@ function handleClick(evt) {
   game.switchCurrPlayer();
 }
 
+function handleStartClick() {
+  startBtn.addEventListener("click", (e) => {
+    game = new Game();
+    makeHtmlBoard();
+  });
+}
 
 /** Start game. */
 
 function start() {
-  game = new Game();
-  makeHtmlBoard();
+  handleStartClick();
 }
 
 

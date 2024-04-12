@@ -8,6 +8,10 @@
 
 /* pieces are div within game table cells: draw as colored circles */
 
+/* #btn{
+  background-color: ;
+} */
+
 .piece {
   margin: 5px;
   width: 80%;

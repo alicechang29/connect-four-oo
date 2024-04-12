@@ -5,6 +5,8 @@
  * board fills (tie).
  */
 
+//FIXME: methods need docstrings
+
 class Game {
   constructor(height = 6, width = 7) {
     this.height = height;
@@ -13,13 +15,21 @@ class Game {
     this.currPlayer = 1;
     this.makeBoard();
   }
-
+  /**
+   * method that will change the current player between 1 and 2
+   * looks at the current instance of the Game class
+   * and reassignes the currPlayer key's value to 1 or 2
+   */
   switchCurrPlayer() {
     this.currPlayer = this.currPlayer === 1 ? 2 : 1;
 
     console.log("switching player", this.currPlayer);
   }
 
+  /**
+   * method that will create the board, given the height and width input of
+   * the current instance of the Game class
+   */
   makeBoard() {
     for (let y = 0; y < this.height; y++) {
       const emptyRow = Array(this.width).fill(null);
@@ -30,7 +40,10 @@ class Game {
     // gameState.board = [...gameState.board].map(() => Array(WIDTH).fill(null));
   }
 
-
+  /**
+   * method that will return the row, if given the column on the
+   * board to place a piece
+   */
   findSpotInCol(x) {
     for (let y = this.height - 1; y >= 0; y--) {
       if (this.board[y][x] === null) {
@@ -39,6 +52,11 @@ class Game {
     }
     return null;
   }
+
+  /**
+   * given 4 coordinates, method will return True/False of whether there is
+   * a winner for the game
+   */
   checkForWin() {
 
     function _win(cells) { // no context, don't know what "this" is
@@ -67,7 +85,7 @@ class Game {
         const diagDL = [[y, x], [y + 1, x - 1], [y + 2, x - 2], [y + 3, x - 3]];
 
         // find winner (only checking each win-possibility as needed)
-        if (_win.call(this, horiz) || _win.call(this, vert) || _win.call(this, diagDR) || _win.call(this, diagDL)) {
+        if (_win.call(this, horiz) || _win.call(this, vert) || _win.call(this, diagDR) || _win.call(this, diagDL)) { //FIXME: enter after every || operator
           return true;
         }
 
@@ -79,6 +97,11 @@ class Game {
         }
          * SOLUTION OPTION 3: use arrow
          * EXAMPLE: const _winVar = ()=> { ...} and then call this variable in IF statement
+         *
+         * Option 4:
+         * create _win as a method on the game class
+         * bc _win is only necessary for the checkForWin function
+         * don't want anyone to be able to access _win which is why opt2/3 are better
          */
       }
     }

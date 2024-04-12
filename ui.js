@@ -63,12 +63,12 @@ function endGame(msg) {
 /** handleClick: handle click of column top to play piece */
 
 function handleClick(evt) {
-  const { board, currPlayer } = game; //TODO: ???? not sure
+  const { board, currPlayer } = game;
   // get x from ID of clicked cell
   const x = Number(evt.target.id.slice("top-".length));
 
   // get next spot in column (if none, ignore click)
-  const y = game.findSpotInCol(x); //TODO: we know we need to go inside game object to get this method
+  const y = game.findSpotInCol(x);
   if (y === null) {
     return;
   }

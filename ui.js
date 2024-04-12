@@ -2,8 +2,9 @@ import {
   Game
 } from "./connect4.js";
 
-let game;
+let game = undefined;
 const startBtn = document.querySelector("#start-btn");
+const boardDOM = document.querySelector("#board");
 
 
 /** makeHtmlBoard: make HTML table and row of column tops. */
@@ -90,12 +91,21 @@ function handleClick(evt) {
   game.switchCurrPlayer();
 }
 
+/** listens to start button click, reset and creates the board*/
 function handleStartClick() {
   startBtn.addEventListener("click", (e) => {
+    if (game !== undefined) {
+      console.log("I am in the if, this is the game", game, game.board, game.board.length);
+      const rowsDOM = boardDOM.querySelectorAll("*");
+      for (let row of rowsDOM) {
+        row.remove();
+      }
+    }
     game = new Game();
     makeHtmlBoard();
   });
 }
+
 
 /** Start game. */
 

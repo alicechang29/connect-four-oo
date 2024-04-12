@@ -7,13 +7,23 @@
 
 //FIXME: methods need docstrings
 
+class Player {
+  constructor(color, playerNumber) {
+    this.color = color;
+    this.playerNumber = playerNumber;
+  }
+
+}
+
 class Game {
   constructor(height = 6, width = 7) {
     this.height = height;
     this.width = width;
     this.board = Array(this.height);
-    this.currPlayer = 1;
     this.makeBoard();
+    this.player1 = new Player("red", 1);
+    this.player2 = new Player("blue", 2);
+    this.currPlayer = this.player1; // 1 or 2
   }
   /**
    * method that will change the current player between 1 and 2
@@ -21,7 +31,7 @@ class Game {
    * and reassignes the currPlayer key's value to 1 or 2
    */
   switchCurrPlayer() {
-    this.currPlayer = this.currPlayer === 1 ? 2 : 1;
+    this.currPlayer = this.currPlayer === this.player1 ? this.player2 : this.player1;
 
     console.log("switching player", this.currPlayer);
   }
@@ -109,18 +119,11 @@ class Game {
   }
 }
 
-/*
-WIP - for the future step
 
-class Player {
-  constructor(p1Color, p2Color) {
-    this.p1Color = p1Color;
-    this.p2Color = p2Color;
-  }
-}
-*/
+
 
 
 export {
-  Game
+  Game,
+  Player
 };

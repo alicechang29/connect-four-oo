@@ -3,8 +3,19 @@ import {
 } from "./connect4.js";
 
 let game = undefined;
+
+
+/*
+player1 = {color: "red"}
+look inside object and get the color and put in the css
+
+take the element style and reassign it
+*/
+
 const startBtn = document.querySelector("#start-btn");
 const boardDOM = document.querySelector("#board");
+
+
 
 
 /** makeHtmlBoard: make HTML table and row of column tops. */
@@ -47,7 +58,7 @@ function makeHtmlBoard() {
 function placeInTable(y, x) {
   const $piece = document.createElement('div');
   $piece.classList.add('piece');
-  $piece.classList.add(`p${game.currPlayer}`);
+  $piece.classList.add(`p${game.currPlayer.playerNumber}`); //p1 or p2
 
   const $spot = document.querySelector(`#c-${y}-${x}`);
   $spot.append($piece);
@@ -101,7 +112,9 @@ function handleStartClick() {
         row.remove();
       }
     }
+
     game = new Game();
+
     makeHtmlBoard();
   });
 }

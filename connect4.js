@@ -21,8 +21,8 @@ class Game {
     this.width = width;
     this.board = Array(this.height);
     this.makeBoard();
-    this.player1 = new Player("red", 1);
-    this.player2 = new Player("blue", 2);
+    this.player1 = new Player(color, 1);
+    this.player2 = new Player(color, 2);
     this.currPlayer = this.player1; // 1 or 2
   }
   /**

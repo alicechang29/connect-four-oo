@@ -7,11 +7,15 @@
 
 <body>
   <div id="header">
-    <input />
-    <input />
-    <button id="start-btn">
-      START GAME
-    </button>
+    <form>
+      <input type="text" id="p1" required placeholder="Player 1 Color" />
+      <input type="text" id="p2" required placeholder="Player 2 Color" />
+
+      <button type="submit" id="start-btn">
+        START GAME
+      </button>
+    </form>
+
   </div>
   <div id="game">
     <table id="board"></table>
